@@ -12,7 +12,7 @@ function App() {
     };
     try {
       const response = await fetch(
-        `http://192.168.1.10:5000/total_cases`,
+        `http://localhost:5000/total_cases`,
         requestOptions
       );
       if (!response.ok) {
@@ -27,12 +27,6 @@ function App() {
       }
     } catch (err) {
       setData(null);
-    }
-  };
-
-  const extractDate = () => {
-    for (let i in data) {
-      console.log(data[i].data);
     }
   };
 
