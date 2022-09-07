@@ -62,7 +62,7 @@ def main():
 
         excel_data = pd.DataFrame(regions_total_cases)
 
-        excel = pd.ExcelWriter("covid_19_today_data.xlsx", engine="xlsxwriter")
+        excel = pd.ExcelWriter("./xls_reports/covid_19_today_data.xlsx", engine="xlsxwriter")
 
         excel_data.to_excel(excel, sheet_name="Sheet1")
 
@@ -92,7 +92,7 @@ def main():
 
         excel_data = pd.DataFrame(regions_total_cases)
 
-        excel = pd.ExcelWriter("covid_19_data.xlsx", engine="xlsxwriter")
+        excel = pd.ExcelWriter("./xls_reports/covid_19_data.xlsx", engine="xlsxwriter")
 
         excel_data.to_excel(excel, sheet_name=f"covid_19_data")
 

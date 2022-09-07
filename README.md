@@ -1,1 +1,3 @@
-# covid19_data
+# server = main.py
+
+# graphic interface = frontend/app
