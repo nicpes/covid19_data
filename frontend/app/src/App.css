@@ -1,0 +1,19 @@
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+#table-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+#element-date:first-child {
+  color: transparent;
+}
+#element:first-child {
+  color: red;
+}
