@@ -5,9 +5,6 @@ from audioop import reverse
 import re, json, requests
 import pandas as pd
 
-# STORING TOTAL CASES IN A LIST OF DICTIONARIES #
-
-
 regions_total_cases = [
     {"nome": "Abruzzo", "totale": 0, "data": ""},
     {"nome": "Basilicata", "totale": 0, "data": ""},
@@ -32,13 +29,11 @@ regions_total_cases = [
 ]
 
 
-inputValue = input(
-    "For today data enter 'today' or press Enter to select another date:  "
-)
-
-
 def main():
 
+    inputValue = input(
+        "For today data enter 'today' or press Enter to select another date:  "
+    )
     # IF inputValue RECEIVES "today" AS VALUE, THE JSON FILE RELATIVE TO 2022 IS FETCHED AND FILTERED, IF THE USER JUST PRESS ENTER, THEN HE CAN ENTER A DATE TO FILTER ANOTHER JSON FILE WITH DATA OF 2020 + #
 
     if inputValue == "today":
@@ -102,20 +97,8 @@ def main():
         excel.save()
 
 
-main()
-
-# FLASK SERVER AND CORS #
-
-app = Flask(__name__)
-cors = CORS(app)
-app.config["CORS_HEADERS"] = "Content-Type"
-
-# GET ROUTE RETURNS A LIST OF OBJECTS BASED ON THE DATA PASSED IN THE main() FUNCTION #
-
-@app.route("/total_cases")
-@cross_origin()
-def index():
-    return regions_total_cases
 
 
-app.run(debug=True, host="0.0.0.0")
+if __name__ == '__main__':
+    main()
+
