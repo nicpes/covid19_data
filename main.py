@@ -5,38 +5,39 @@ from audioop import reverse
 import re, json, requests
 import pandas as pd
 
+# STORING TOTAL CASES IN A LIST OF DICTIONARIES #
 
 
 regions_total_cases = [
-    {"nome": "Abruzzo", "totale": 0, "data" : ""},
-    {"nome": "Basilicata", "totale": 0, "data" : ""},
-    {"nome": "Calabria", "totale": 0, "data" : ""},
-    {"nome": "Campania", "totale": 0, "data" : ""},
-    {"nome": "Emilia-Romagna", "totale": 0, "data" : ""},
-    {"nome": "Friuli Venezia Giulia", "totale": 0, "data" : ""},
-    {"nome": "Lazio", "totale": 0, "data" : ""},
-    {"nome": "Liguria", "totale": 0, "data" : ""},
-    {"nome": "Lombardia", "totale": 0, "data" : ""},
-    {"nome": "Marche", "totale": 0, "data" : ""},
-    {"nome": "Molise", "totale": 0, "data" : ""},
-    {"nome": "P.A. Bolzano", "totale": 0, "data" : ""},
-    {"nome": "P.A. Trento", "totale": 0, "data" : ""},
-    {"nome": "Piemonte", "totale": 0, "data" : ""},
-    {"nome": "Puglia", "totale": 0, "data" : ""},
-    {"nome": "Sardegna", "totale": 0, "data" : ""},
-    {"nome": "Sicilia", "totale": 0, "data" : ""},
-    {"nome": "Toscana", "totale": 0, "data" : ""},
-    {"nome": "Umbria", "totale": 0, "data" : ""},
-    {"nome": "Valle d'Aosta", "totale": 0, "data" : ""},
+    {"nome": "Abruzzo", "totale": 0, "data": ""},
+    {"nome": "Basilicata", "totale": 0, "data": ""},
+    {"nome": "Calabria", "totale": 0, "data": ""},
+    {"nome": "Campania", "totale": 0, "data": ""},
+    {"nome": "Emilia-Romagna", "totale": 0, "data": ""},
+    {"nome": "Friuli Venezia Giulia", "totale": 0, "data": ""},
+    {"nome": "Lazio", "totale": 0, "data": ""},
+    {"nome": "Liguria", "totale": 0, "data": ""},
+    {"nome": "Lombardia", "totale": 0, "data": ""},
+    {"nome": "Marche", "totale": 0, "data": ""},
+    {"nome": "Molise", "totale": 0, "data": ""},
+    {"nome": "P.A. Bolzano", "totale": 0, "data": ""},
+    {"nome": "P.A. Trento", "totale": 0, "data": ""},
+    {"nome": "Piemonte", "totale": 0, "data": ""},
+    {"nome": "Puglia", "totale": 0, "data": ""},
+    {"nome": "Sardegna", "totale": 0, "data": ""},
+    {"nome": "Sicilia", "totale": 0, "data": ""},
+    {"nome": "Toscana", "totale": 0, "data": ""},
+    {"nome": "Umbria", "totale": 0, "data": ""},
+    {"nome": "Valle d'Aosta", "totale": 0, "data": ""},
 ]
+
 
 inputValue = input(
     "For today data enter 'today' or press Enter to select another date:  "
-    )
+)
+
 
 def main():
-
-    # STORE TOTAL CASES IN A LIST OF DICTIONARIES #
 
     # IF inputValue RECEIVES "today" AS VALUE, THE JSON FILE RELATIVE TO 2022 IS FETCHED AND FILTERED, IF THE USER JUST PRESS ENTER, THEN HE CAN ENTER A DATE TO FILTER ANOTHER JSON FILE WITH DATA OF 2020 + #
 
@@ -62,7 +63,9 @@ def main():
 
         excel_data = pd.DataFrame(regions_total_cases)
 
-        excel = pd.ExcelWriter("./xls_reports/covid_19_today_data.xlsx", engine="xlsxwriter")
+        excel = pd.ExcelWriter(
+            "./xls_reports/covid_19_today_data.xlsx", engine="xlsxwriter"
+        )
 
         excel_data.to_excel(excel, sheet_name="Sheet1")
 
@@ -98,14 +101,14 @@ def main():
 
         excel.save()
 
-        
+
 main()
 
 # FLASK SERVER AND CORS #
 
 app = Flask(__name__)
 cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+app.config["CORS_HEADERS"] = "Content-Type"
 
 # GET ROUTE RETURNS A LIST OF OBJECTS BASED ON THE DATA PASSED IN THE main() FUNCTION #
 
