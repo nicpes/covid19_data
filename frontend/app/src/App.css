@@ -3,17 +3,31 @@
   justify-content: center;
   align-items: center;
   padding: 50px;
+  border: 3px solid black;
+  border-radius: 20px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #table-container {
   display: flex;
   flex-direction: column;
   gap: 25px;
+  justify-content: center;
+  align-items: center;
 }
 
-#element-date:first-child {
-  color: transparent;
+#table-title {
+  text-decoration: underline;
 }
-#element:first-child {
+
+#element {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+#element:first-of-type {
   color: red;
+  font-size: 22px;
 }

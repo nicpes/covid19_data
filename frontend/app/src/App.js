@@ -22,6 +22,9 @@ function App() {
       }
       let actualData = await response.json();
       setData(actualData);
+      for (let i in actualData) {
+        setDate(actualData[i].data);
+      }
     } catch (err) {
       setData(null);
     }
@@ -35,17 +38,18 @@ function App() {
 
   useEffect(() => {
     fetchData();
-    setDate(extractDate);
   }, []);
 
   return (
     <div id="app">
       <div id="table-container">
-        <p>{date}</p>
+        <p>Dati relativi al: {date}</p>
+        <h2 id="table-title"> Regione - Totale casi</h2>{" "}
         {data &&
           data.map((element, index) => (
             <div id="element" key={index}>
-              Regione: {element.nome} - Totale casi: {element.totale}
+              <span id="element-name">{element.nome}</span> =
+              <span id="element-total">{element.totale}</span>
             </div>
           ))}
       </div>
