@@ -2,7 +2,8 @@
 
 # graphic interface = frontend/app (React, JS, HTML, CSS)
 
-Launch project:
+Launch react project:
 
 # npm install -y
+
 # npm run start
