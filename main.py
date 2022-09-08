@@ -5,7 +5,7 @@ from audioop import reverse
 import re, json, requests
 import pandas as pd
 
-# STORING TOTAL CASES IN A LIST OF DICTIONARIES #
+# STORING TOTAL CASES #
 
 
 regions_total_cases = [
@@ -39,7 +39,7 @@ inputValue = input(
 
 def main():
 
-    # IF inputValue RECEIVES "today" AS VALUE, THE JSON FILE RELATIVE TO 2022 IS FETCHED AND FILTERED, IF THE USER JUST PRESS ENTER, THEN HE CAN ENTER A DATE TO FILTER ANOTHER JSON FILE WITH DATA OF 2020 + #
+# IF inputValue RECEIVES "today" AS VALUE, THE JSON FILE RELATIVE TO 2022 IS FETCHED AND FILTERED, IF THE USER JUST PRESS ENTER, HE CAN ENTER A DATE TO FILTER ANOTHER JSON FILE WITH 2020+ DATA #
 
     if inputValue == "today":
         url = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-province-latest.json"
@@ -53,13 +53,15 @@ def main():
                     r["totale"] += i["totale_casi"]
                     r["data"] = i["data"]
 
-        regions_total_cases.sort(key=lambda s: s["nome"], reverse=True)
+# SORTING RESULT BY 
+
+        regions_total_cases.sort(key=lambda s: s["nome"])
 
         regions_total_cases.sort(key=lambda s: s["totale"], reverse=True)
 
         print(regions_total_cases)
 
-        # WRITING DATA ON EXCEL FILE #
+# WRITING DATA ON EXCEL FILE #
 
         excel_data = pd.DataFrame(regions_total_cases)
 
@@ -104,11 +106,12 @@ def main():
 
 main()
 
-# FLASK SERVER AND CORS #
+# FLASK SERVER #
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
+
 
 # GET ROUTE RETURNS A LIST OF OBJECTS BASED ON THE DATA PASSED IN THE main() FUNCTION #
 
@@ -119,5 +122,3 @@ def index():
 
 
 app.run(debug=False, host="0.0.0.0")
-
- 

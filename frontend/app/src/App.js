@@ -4,6 +4,9 @@ import React, { useEffect, useState } from "react";
 function App() {
   const [data, setData] = useState([]);
   const [date, setDate] = useState();
+  let total = 0;
+
+  /* FETCHING DATA FROM MAIN.PY SERVER AND STORING VALUES IN data */
 
   const fetchData = async () => {
     const requestOptions = {
@@ -30,22 +33,35 @@ function App() {
     }
   };
 
+  /* DAY TOTAL CASES */
+
+  const calcTotal = () => {
+    for (let i in data) {
+      total += data[i].totale;
+    }
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
+
+  calcTotal();
+
+  /* MAPPING DATA STATE AND GENERATING THE TABLE */
 
   return (
     <div id="app">
       <div id="table-container">
         <p>Dati relativi al: {date}</p>
-        <h2 id="table-title"> Regione - Totale casi</h2>{" "}
+        <h2 id="table-title"> Regione - Totale casi</h2>
         {data &&
           data.map((element, index) => (
             <div id="element" key={index}>
-              <span id="element-name">{element.nome}</span> =
+              <span id="element-name">{element.nome}</span>
               <span id="element-total">{element.totale}</span>
             </div>
           ))}
+        <p>Totale: {total}</p>
       </div>
     </div>
   );
