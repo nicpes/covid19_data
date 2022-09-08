@@ -38,8 +38,8 @@ inputValue = input(
 
 
 def main():
-
-# IF inputValue RECEIVES "today" AS VALUE, THE JSON FILE RELATIVE TO 2022 IS FETCHED AND FILTERED, IF THE USER JUST PRESS ENTER, HE CAN ENTER A DATE TO FILTER ANOTHER JSON FILE WITH 2020+ DATA #
+    # TASK 1 #
+    # IF inputValue RECEIVES "today" AS VALUE, THE JSON FILE RELATIVE TO 2022 IS FETCHED AND FILTERED, IF THE USER JUST PRESS ENTER, HE CAN ENTER A DATE TO FILTER ANOTHER JSON FILE WITH 2020+ DATA #
 
     if inputValue == "today":
         url = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-province-latest.json"
@@ -53,15 +53,16 @@ def main():
                     r["totale"] += i["totale_casi"]
                     r["data"] = i["data"]
 
-# SORTING RESULTS BY TOTAL CASES AND NAME #  
+        # SORTING RESULTS BY TOTAL CASES AND NAME #
 
         regions_total_cases.sort(key=lambda s: s["nome"])
 
         regions_total_cases.sort(key=lambda s: s["totale"], reverse=True)
 
         print(regions_total_cases)
-
-# WRITING DATA ON EXCEL FILE #
+        
+        # TASK 3 #
+        # WRITING DATA ON EXCEL FILE #
 
         excel_data = pd.DataFrame(regions_total_cases)
 
@@ -72,7 +73,7 @@ def main():
         excel_data.to_excel(excel, sheet_name="Sheet1")
 
         excel.save()
-
+    # TASK 2 #
     else:
 
         date = input("insert data yyyy-mm-dd: ")
@@ -105,7 +106,7 @@ def main():
 
 
 main()
-
+# TASK 4 #
 # FLASK SERVER #
 
 app = Flask(__name__)
@@ -113,7 +114,8 @@ cors = CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
 
 
-# GET ROUTE RETURNS A JSON BASED ON THE DATA PASSED IN THE main() FUNCTION #
+# GET ROUTE RETURNS A JSON OF REGIONS TOTAL CASES #
+
 
 @app.route("/total_cases")
 @cross_origin()
