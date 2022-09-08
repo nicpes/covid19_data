@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS, cross_origin
 from ast import dump
 from audioop import reverse
@@ -53,7 +53,7 @@ def main():
                     r["totale"] += i["totale_casi"]
                     r["data"] = i["data"]
 
-# SORTING RESULT BY 
+# SORTING RESULTS BY TOTAL CASES AND NAME #  
 
         regions_total_cases.sort(key=lambda s: s["nome"])
 
@@ -113,12 +113,13 @@ cors = CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
 
 
-# GET ROUTE RETURNS A LIST OF OBJECTS BASED ON THE DATA PASSED IN THE main() FUNCTION #
+# GET ROUTE RETURNS A JSON BASED ON THE DATA PASSED IN THE main() FUNCTION #
 
 @app.route("/total_cases")
 @cross_origin()
 def index():
-    return regions_total_cases
+    jsonData = json.dumps(regions_total_cases, indent=2)
+    return jsonData
 
 
 app.run(debug=False, host="0.0.0.0")
