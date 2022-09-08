@@ -6,5 +6,5 @@
 
 Launch project:
 
-npm install -y
-npm run start
+# npm install -y
+# npm run start
