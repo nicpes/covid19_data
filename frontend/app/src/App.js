@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 function App() {
   const [data, setData] = useState([]);
-  const [date, setDate] = useState();
+  const [date, setDate] = useState("");
   let total = 0;
 
   /* FETCHING DATA FROM MAIN.PY SERVER AND STORING VALUES IN data */
@@ -43,6 +43,7 @@ function App() {
 
   useEffect(() => {
     fetchData();
+    console.log(typeof date, "is the type of date");
   }, []);
 
   calcTotal();
