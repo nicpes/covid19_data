@@ -60,7 +60,7 @@ def main():
         regions_total_cases.sort(key=lambda s: s["totale"], reverse=True)
 
         print(regions_total_cases)
-        
+
         # TASK 3 #
         # WRITING DATA ON EXCEL FILE #
 
@@ -70,7 +70,7 @@ def main():
             "./xls_reports/covid_19_today_data.xlsx", engine="xlsxwriter"
         )
 
-        excel_data.to_excel(excel, sheet_name="Sheet1")
+        excel_data.to_excel(excel, sheet_name="covid_19_data_today")
 
         excel.save()
     # TASK 2 #

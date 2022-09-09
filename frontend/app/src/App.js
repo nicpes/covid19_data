@@ -43,7 +43,6 @@ function App() {
 
   useEffect(() => {
     fetchData();
-    console.log(typeof date, "is the type of date");
   }, []);
 
   calcTotal();
@@ -53,7 +52,7 @@ function App() {
   return (
     <div id="app">
       <div id="table-container">
-        <p>Dati relativi al: {date}</p>
+        <p>Dati relativi al: {date.slice(0, 10)}</p>
         <h2 id="table-title"> Regione - Totale casi</h2>
         {data &&
           data.map((element, index) => (
