@@ -19,14 +19,12 @@ function App() {
         requestOptions
       );
       if (!response.ok) {
-        throw new Error(
-          `This is an HTTP error: The status is ${response.status}`
-        );
+        throw new Error(`HTTP ERROR: ${response.status}`);
       }
-      let actualData = await response.json();
-      setData(actualData);
-      for (let i in actualData) {
-        setDate(actualData[i].data);
+      let json = await response.json();
+      setData(json);
+      for (let i in json) {
+        setDate(json[i].data);
       }
     } catch (err) {
       setData(null);
