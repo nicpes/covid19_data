@@ -1,7 +1,5 @@
-from flask import Flask, request
+from flask import Flask
 from flask_cors import CORS, cross_origin
-from ast import dump
-from audioop import reverse
 import re, json, requests
 import pandas as pd
 
